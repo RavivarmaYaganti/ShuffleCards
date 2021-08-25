@@ -22,18 +22,18 @@ namespace ShuffleCards
 						player[j].Add(deck.deal().toString());
 				for (int k = 0; k < 5; k++)
 				{
-					List<string> sortedList = player[k].OrderBy(x => PadNumbers(x)).OrderBy(g => FaceValue(g)).ToList();
+					List<string> sortedList = player[k].OrderBy(x => PadNumber(x)).OrderBy(g => FaceValues(g)).ToList();
 					Console.WriteLine("Player #" + (k + 1) + ": " + string.Join("-", sortedList));
 				}
 			Console.ReadKey();
 			}
 
-			public static string PadNumbers(string input)
+			public static string PadNumber(string input)
 			{
 				return Regex.Replace(input, "[0-9]+", match => match.Value.PadLeft(2, '0'));
 			}
 
-			public static int FaceValue(string input)
+			public static int FaceValues(string input)
 			{
 				return input.Substring(0, 1) == "A" ? 14 : input.Substring(0, 1) == "K" ? 13 : input.Substring(0, 1) == "Q" ? 12 : input.Substring(0, 1) == "J" ? 11 : 0;
 			}
